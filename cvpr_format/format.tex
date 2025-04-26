@@ -3,12 +3,12 @@
 \documentclass[10pt,twocolumn,letterpaper]{article}
 
 %%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
-\usepackage{cvpr}              % To produce the CAMERA-READY version
+\usepackage{../cvpr}              % To produce the CAMERA-READY version
 % \usepackage[review]{cvpr}      % To produce the REVIEW version
 % \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
 
 % Import additional packages in the preamble file, before hyperref
-\input{preamble}
+\input{../preamble}
 
 % It is strongly recommended to use hyperref, especially for the review version.
 % hyperref with option pagebackref eases the reviewers' job.
@@ -47,14 +47,14 @@ First line of institution2 address\\
 
 \begin{document}
 \maketitle
-\input{format_sec/0_abstract}    
-\input{format_sec/1_intro}
-\input{format_sec/2_formatting}
-\input{format_sec/3_finalcopy}
+\input{../format_sec/0_abstract}    
+\input{../format_sec/1_intro}
+\input{../format_sec/2_formatting}
+\input{../format_sec/3_finalcopy}
 {
     \small
-    \bibliographystyle{ieeenat_fullname}
-    \bibliography{main}
+    \bibliographystyle{../ieeenat_fullname}
+    \bibliography{format}
 }
 
 % WARNING: do not forget to delete the supplementary pages from your submission 

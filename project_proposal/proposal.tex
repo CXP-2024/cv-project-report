@@ -1,0 +1,72 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+
+%%%%%%%%% PAPER TYPE  - PLEASE UPDATE FOR FINAL VERSION
+% \usepackage{cvpr}              % To produce the CAMERA-READY version
+\usepackage[]{../cvpr}      % To produce the REVIEW version
+% \usepackage[pagenumbers]{cvpr} % To force page numbers, e.g. for an arXiv version
+
+% Import additional packages in the preamble file, before hyperref
+\input{../preamble}
+% It is strongly recommended to use hyperref, especially for the review version.
+% hyperref with option pagebackref eases the reviewers' job.
+% Please disable hyperref *only* if you encounter grave issues, 
+% e.g. with the file validation for the camera-ready version.
+%
+% If you comment hyperref and then uncomment it, you should delete *.aux before re-running LaTeX.
+% (Or just hit 'q' on the first LaTeX run, let it finish, and you should be clear).
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\paperID{*****} % *** Enter the Paper ID here
+\def\confName{Computer Vision}
+\def\confYear{2025}
+
+% Add these packages for compact formatting
+
+\title{Project Proposal of Computer Vision}
+\author{Zhengyang Zhang \& Changxun Pan\\ 
+IIIS, Tsinghua University\\}
+\date{March 2025}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+%The project is mainly for emotion recognition in videos.
+Emotion recognition is an indispensable part of computer vision. As facial expression is one of the most direct and way in which humans express themselves, emotion recognition makes it possible for computers to understand human beings directly, which is essential for making human-friendly computers or robots.\\
+
+In this project, we will try several different models for emotion recognition, and we will try to optimize some models for fast inference. As application in robotics need very low energy consumption, we cannot use very powerful GPUs on robots, so we need a high efficiency algorithms for fast and efficient emotion recognition.
+
+
+\section{Readings to be examined}
+There are many prior works that are related to face detection and emotion detection. We need the algorithm for face detection as the input of our problem is not a single portrait, but a full scene photograph in different scenarios. Therefore, before we can judge the emotion, we need to first find the faces and crop them down for further emotion detection. In this point of view, we need to read some of the paper regarding face detection and marking, for example ``ASFD: Automatic and Scalable Face Detector"\cite{ASFD}. We also need to read some of paper of image classification, for example "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"\cite{EfficientNet}, especially those that have a smaller number of parameters and shallower network structure, which may help to reduce the inference cost, thus, helping to reach the goal of fast and efficient emotion recognition.
+
+\section{Data sets to be used}
+There are some face emotion recognition dataset on the Internet, for example, the "Facial Emotion Recognition Dataset" contains lots of pictures tagged with seven different emotions, we can use this data to train the model. In addition, we also need some data to train face detection. We found "Face-Detection-Dataset" on kaggle, which contains "16.7k images and 2 annotation files". 
+
+\section{Core Method or algorithm}
+We will divide this task into 2 parts, the first is face detection, we can use different kernel size to scan through the image an run a neural network to tell whether there is a face in the kernel, which can help us find the place of the face. Then we can crop the face down and send this partial image into a another neural network, then we can  use this neural network to tell the emotion.
+
+When running inference, we can still follow this pipeline, before sending the picture into neural network, we can first run max pool or average pool to blur the image, which can help to reduce the amount of calculation needed.
+
+In addition, we can also choose different precisions of the parameters. Smaller precision of the parameters does not necessarily cause the accuracy to reduce, but it must reduce the amount of calculation needed.
+
+\section{The method of evaluating results}
+There are several ways to evaluate. 
+
+First, we can divide the data set into a training set and an evaluation set to partially test the accuracy of the neural network. Inference speed can also be tested.
+
+Second, we can shot some videos in real life and compare the result with the real emotion. The videos can be in different resolution, and can be of different distance to the human, which can test the robustness of the algorithm and neural network. Also, the fast frame rate of real-life videos can also test the efficiency of the algorithm.
+
+Our final goal is to implement this algorithm on laptops with only integrated GPU or even on smartphones. So, the final test is try to move this program onto smartphones and try to use smartphones' cameras to detect emotion in real life.
+
+{
+% add references
+\small
+\bibliographystyle{../ieeenat_fullname}
+\bibliography{proposal}
+}
+
+
+\end{document}
