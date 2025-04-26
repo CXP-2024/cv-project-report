@@ -1,0 +1,6 @@
+\section{Future work}
+\subsection{Distorted face detection}
+In a video, faces are in different poses, which may cause problems for detection. Actually, in experiments, the model failed to detect the distorted faces. We also consider using a stronger model to fix this problem, however, it may cost a lot. 
+So in order to let the model work properly, we need to transform the face back to the right position. We can use SIFT for this function. The eyes and edge of the lips are often keypoints, and as the model for finding the faces actually detect the eyes and lips, we can just select these points as the keypoint and further detect it. 
+Then we can use homography transformation to find the original picture of the distorted faces and then use the model to detect the position of the face. 
+	

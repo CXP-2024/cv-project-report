@@ -1,0 +1,16 @@
+directly do detect on near 1080P video: 7m26s
+
+change to near 480P:
+with no detect all area if find no face in local:
+pad = 1.0 1m20s
+pad = 2.0 1m28s
+pad = 2.5 1m30s
+pad = 3.0 1m33s
+pad = 0.3 1m11s
+detect all area if find no face in local with pad = 0.3: 1m40s
+detect all area if find no face in local with pad = 1.0: 1m40s
+detect all area if find no face in local with pad = 2.5: 1m40s
+
+face_to_frame_ratio threshold = 0.15: 1m24s  (pad = 1.0)
+face_to_frame_ratio threshold = 0.08: 1m16s  (pad = 1.0)
+face_to_frame_ratio threshold = 0.05: 1m16s  (pad = 1.0)
