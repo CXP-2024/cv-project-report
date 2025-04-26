@@ -14,6 +14,14 @@ The ways we thought of can be described as follows:
     \item \textbf{Dynamic resolution adjustment:} when the face is very large, we can also reduce the resolution, as it is just about finding the face.
 \end{enumerate}
 \subsection{CNN recognition}
-We use a resnet for emotion classification. Actually, classify expression is very hard for human beings. We experimented on our classmates. They reached about 40\% accuracy at the first trials and is bottlenecked at at most 65\% even after being "fine tuned" by the datasets. This model achieved test accuracy of 62\%, which is close to human's performance.
+We observed that the data distribution was highly unbalanced, with the disgust class being significantly underrepresented while the happy class was overrepresented. To address this issue, we applied data augmentation techniques to balance the class distribution. This preprocessing step improved our classification results, particularly for the rare emotion categories that would otherwise have been difficult to recognize accurately.
 
+We employed a ResNet architecture for emotion classification. Notably, facial expression classification is challenging even for humans. To establish a benchmark, we conducted experiments with human participants (our classmates). Initially, they achieved approximately 40\% accuracy, and even after extensive exposure to the dataset, their performance plateaued at around 65\%. Our model achieved an average test accuracy of 62\% (Figure \ref{fig:test_acc}), which is comparable to human performance on this challenging task.
+
+\begin{figure}[!htb]
+	\centering
+	 \includegraphics[width=1.0\linewidth]{sec/assets/test_acc.png}
+	 \caption{The model achieved 62\% accuracy on the test set, comparable to trained human performance.}
+	 \label{fig:test_acc}
+\end{figure}
 

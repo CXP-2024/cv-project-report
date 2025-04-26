@@ -4,7 +4,7 @@ We used a standard video of 2 minutes and 18 seconds at 30fps for testing. The v
 
 \subsection{Implementation Time}
 First, we tested a nearly 1080P video without optimization. The naive pipeline, which detected faces and classified emotions in each frame, took 7m26s to complete (Figure \ref{fig:original_command}), which was prohibitively long for practical use.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\centering
 	 \includegraphics[width=1.0\linewidth]{sec/assets/original_command.png}
 	 \caption{Original run with the naive pipeline: processing time was 7m26s.}
@@ -12,7 +12,7 @@ First, we tested a nearly 1080P video without optimization. The naive pipeline, 
 \end{figure}
 
 We tested multiple video resolutions to optimize processing speed. Our experiments showed that while high-resolution videos are not essential for effective face and emotion detection, excessively low resolution leads to detection failures. Testing demonstrated that 480P provided the optimal balance between accuracy and performance, reducing processing time to just 1m38s (Figure \ref{fig:480P_command}). Based on these findings, we implemented automatic resolution adjustment to approximately 480P for all subsequent experiments.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\centering
 	 \includegraphics[width=1.0\linewidth]{sec/assets/480P_command.png}
 	 \caption{The 480P video required only 1m38s to process.}

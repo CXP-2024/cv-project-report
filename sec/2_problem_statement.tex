@@ -1,22 +1,31 @@
 \section{Problem Statement}
-\subsection{Readings to be examined}
-There are many prior works that are related to face detection and emotion detection. We need the algorithm for face detection as the input of our problem is not a single portrait, but a full scene photograph in different scenarios. Therefore, before we can judge the emotion, we need to first find the faces and crop them down for further emotion detection. In this point of view, we need to read some of the paper regarding face detection and marking, for example ``ASFD: Automatic and Scalable Face Detector"\cite{ASFD}. We also need to read some of the papers on image classification, for example ``EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"\cite{EfficientNet}, especially those that have a smaller number of parameters and shallower network structure, which may help to reduce the inference cost, thus, helping to reach the goal of fast and efficient emotion recognition.
+Our goal is to develop a fast and efficient algorithm for emotion recognition in videos that can operate in real-time on consumer hardware. The system must overcome two primary challenges: (1) accurately detecting faces in varied scenarios and (2) correctly classifying emotions with performance comparable to human capability. Specifically, we aim to achieve:
 
-\subsection{Dataset to be used}
-There are some face emotion recognition dataset on the Internet, for example, the ``Facial Emotion Recognition Dataset" contains lots of pictures tagged with seven different emotions, we can use this data to train the model. In addition, we also need some data to train face detection. We found ``Face-Detection-Dataset" on kaggle, which contains ``16.7k images and 2 annotation files". 
+\begin{itemize}
+    \item Processing speed of at least 20 frames per second on laptops with integrated GPUs
+    \item Emotion recognition accuracy comparable to trained humans (approximately 60\%)
+    \item Robustness across various lighting conditions, face orientations, and video resolutions
+\end{itemize}
 
-\subsection{Core Method or algorithm}
-We will divide this task into 2 parts, the first is face detection, we can use different kernel size to scan through the image an run a neural network to tell whether there is a face in the kernel, which can help us find the place of the face. Then we can crop the face down and send this partial image into a another neural network, then we can  use this neural network to tell the emotion.
+The solution must be optimized for resource-constrained environments while maintaining acceptable accuracy, making it suitable for deployment on standard laptops or even smartphones.
 
-When running inference, we can still follow this pipeline, before sending the picture into neural network, we can first run max pool or average pool to blur the image, which can help to reduce the amount of calculation needed.
+\subsection{Readings}
+There are many prior works related to face detection and emotion recognition. Since our input consists of full scene videos rather than isolated portraits, we must first locate faces before analyzing emotions. We reviewed face detection literature such as ``ASFD: Automatic and Scalable Face Detector"\cite{ASFD} and facial landmark localization techniques. For emotion classification, we examined efficient CNN architectures like ``EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"\cite{EfficientNet}, focusing on models with fewer parameters and shallower structures to reduce computational demands while maintaining accuracy.
 
-In addition, we can also choose different precisions of the parameters. Smaller precision of the parameters does not necessarily cause the accuracy to reduce, but it must reduce the amount of calculation needed.
+\subsection{Dataset used}
+We use the fer2013 dataset, which is a widely used benchmark for emotion recognition. It contains 35,887 grayscale facial images (48×48 pixels) labeled with seven emotions: anger, disgust, fear, happiness, sadness, surprise, and neutral. The dataset is collected from diverse sources and divided into training, validation, and test sets to enable rigorous evaluation of our model's generalization capability.
 
-\subsection{The method of evaluating results}
-There are several ways to evaluate. 
+\subsection{Evaluation Methodology}
+We employ a multi-faceted evaluation approach:
 
-First, we can divide the data set into a training set and an evaluation set to partially test the accuracy of the neural network. Inference speed can also be tested.
+\begin{enumerate}
+    \item \textbf{Algorithmic performance:} We measure both classification accuracy against the test set and computational efficiency (processing time per frame). Our target is to achieve accuracy comparable to trained humans (nearly 60\%) while maintaining real-time processing speeds (more than 20 FPS).
+    
+    \item \textbf{Real-world testing:} We evaluate our system using real-life video recordings at various resolutions and distances to assess robustness. This includes scenarios with multiple faces, changing lighting conditions, and varying face orientations.
+    
+    \item \textbf{Optimization evaluation:} We systematically test different optimizations, including resolution reduction, localized detection, and dynamic resolution adjustment, to determine their impact on processing speed and detection accuracy.
+    
+    \item \textbf{Hardware deployment:} The final evaluation involves deploying our solution on consumer hardware (laptops with integrated GPUs) and potentially smartphones to confirm real-time capabilities on target platforms.
+\end{enumerate}
 
-Second, we can shot some videos in real life and compare the result with the real emotion. The videos can be in different resolution, and can be of different distance to the human, which can test the robustness of the algorithm and neural network. Also, the fast frame rate of real-life videos can also test the efficiency of the algorithm.
-
-Our final goal is to implement this algorithm on laptops with only integrated GPU or even on smartphones. So, the final test is try to move this program onto smartphones and try to use smatrphones' cameras to detect emotion in real life.
+Success is defined as achieving emotion classification accuracy comparable to trained humans while maintaining real-time processing capabilities on standard consumer hardware.
