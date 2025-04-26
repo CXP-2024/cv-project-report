@@ -1,0 +1,23 @@
+\section{Technical approach}
+The main techniques for this problem can be described as follows
+\begin{enumerate}
+    \item Use a neural network to find the position of the face, we can draw a box around the face to verify its effectiveness
+    \item Use a CNN to determine the emotion of the face, we can judge its effectiveness using testing accuracy. We can also compare these result to human benchmark and determine whether it does a good job.
+\end{enumerate}
+In this process, there may be some difficulties, especially in terms of efficiency. As the neural network is very computationally costly, we have to think of some methods to reduce time consumption.
+
+The ways we thought of can be described as follows:
+\subsection{Efficiency promotion}
+\begin{enumerate}
+    \item Small detection area: We know that the face can not move very fast in the picture, so we can just detect a small area around the position of faces in the last frame. We detect on the global scale only if there is no face in the last frame. You may wonder what if the scope changed suddenly, it doesn't matter. In the first frame after changing the scope, we cannot detect the face, but after that, we will find that there is no face in the last frame, and then detection on a global scale will be done. So, indeed, we may lose at most one frame, which cannot be observed.
+    \item Also, some computation can be saved when scanning the whole picture. We can just reduce the resolution of the picture by several times, as we just need to find the position of the faces, very high resolution is not necessary.
+    \item Besides, when the face is very large, we can also reduce the resolution, as it is just about finding the face.
+\end{enumerate}
+\subsection{CNN recognition}
+We use a resnet for emotion classification. Actually, classify expression is very hard for human beings. We experimented on our classmates. They reached about 40\% accuracy at the first trials and is bottlenecked at at most 65\% even after being "fine tuned" by the datasets. This model achieved test accuracy of 62\%, which is close to human's performance.
+
+
+\subsection{Distorted face detection}
+In a video, faces are in different poses, which may cause problems for detection. Actually, in experiments, the model failed to detect the distorted faces. So in order to let the model work properly, we need to transform the face back to the right position. We can use SIFT for this function. The eyes and edge of the lips are often keypoints, and as the model for finding the faces actually detect the eyes and lips, we can just select these points as the keypoint and further detect it. Then we can use homography transformation to find the original picture of the distorted faces and then use the model to detect the position of the face. 
+
+
