@@ -4,6 +4,9 @@ In a video, faces are in different poses, which may cause problems for detection
 So in order to let the model work properly, we need to transform the face back to the right position. We can use SIFT for this function. The eyes and edge of the lips are often keypoints, and as the model for finding the faces actually detect the eyes and lips, we can just select these points as the keypoint and further detect it. (or just the 68 points detected by the model).
 Then we can use homography transformation to find the original picture of the distorted faces and then use the model to detect the position of the face. We'll try this in the future.
 
+\subsection{Complex Situations}
+In complex situations, such as crowded environments or varying lighting conditions, the model's performance may degrade. We plan to conduct systematic testing in these challenging scenarios and explore techniques to enhance the model's robustness. This improvement may involve data augmentation strategies, such as introducing noise or simulating various lighting conditions in the training data, or implementing ensemble methods to combine predictions from multiple models.
+
 \subsection{New Datasets and Models}
 We are currently considering using new datasets to train our model, such as AffectNet. Some of these datasets contain combined emotions, which present two emotions simultaneously, providing a more realistic representation of human expressions. Additionally, we plan to explore better detection models (e.g., YOLO) to improve both accuracy and efficiency. Further research will focus on identifying additional techniques to enhance the model's overall performance.
 
