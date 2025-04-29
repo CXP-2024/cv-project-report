@@ -1,5 +1,5 @@
 \section{Problem Statement}
-Our goal is to develop a fast and efficient algorithm for emotion recognition in videos that can operate in real-time on consumer hardware. The system must overcome two primary challenges: (1) accurately detecting faces in varied scenarios and (2) correctly classifying emotions with performance comparable to human capability. Specifically, we aim to achieve:
+Our aim is to create a fast, real-time emotion recognition system for videos on edge devices, tackling the challenges of (1) robust face detection and (2) achieving human-level emotion classification accuracy. Specifically, we aim to achieve:
 
 \begin{itemize}
     \item Processing speed of at least 20 frames per second on laptops with integrated GPUs
@@ -7,13 +7,12 @@ Our goal is to develop a fast and efficient algorithm for emotion recognition in
     \item Robustness across various lighting conditions, face orientations, and video resolutions
 \end{itemize}
 
-The solution must be optimized for resource-constrained environments while maintaining acceptable accuracy, making it suitable for deployment on standard laptops or even smartphones.
+The solution must be optimized for resource-constrained environments while maintaining acceptable accuracy, making it suitable for deployment edge devices.
 
 \subsection{Readings}
-There are many prior works related to face detection and emotion recognition. Since our input consists of full scene videos rather than isolated portraits, we must first locate faces before analyzing emotions. We reviewed face detection literature such as ``ASFD: Automatic and Scalable Face Detector"\cite{ASFD} and facial landmark localization techniques. For emotion classification, we examined efficient CNN architectures like ``EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"\cite{EfficientNet}, focusing on models with fewer parameters and shallower structures to reduce computational demands while maintaining accuracy.
-
+Since our input is full-scene videos rather than isolated portraits, we first need to locate faces before recognizing emotions. We reviewed prior works on face detection like "ASFD: Automatic and Scalable Face Detector"\cite{ASFD} and facial landmark localization, and for emotion classification, we explored efficient CNN architectures such as "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks,"\cite{EfficientNet} prioritizing models with fewer parameters and shallow structures to balance speed and accuracy.
 \subsection{Dataset used}
-We use the fer2013 dataset, which is a widely used benchmark for emotion recognition. It contains 35,887 grayscale facial images (48×48 pixels) labeled with seven emotions: anger, disgust, fear, happiness, sadness, surprise, and neutral. The dataset is collected from diverse sources and divided into training, validation, and test sets to enable rigorous evaluation of our model's generalization capability.
+We use the fer2013 dataset, a widely used emotion recognition dataset. It contains 35,887 grayscale facial images (48×48 pixels) labeled with seven emotions: anger, disgust, fear, happiness, sadness, surprise, and neutral. The dataset is collected from diverse sources and divided into training, validation, and test sets to enable rigorous evaluation of our model's generalization capability.
 
 \subsection{Evaluation Methodology}
 We employ a multi-faceted evaluation approach:

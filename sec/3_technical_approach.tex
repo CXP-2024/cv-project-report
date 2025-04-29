@@ -9,18 +9,18 @@ In this process, there may be some difficulties, especially in terms of efficien
 The ways we thought of can be described as follows:
 \subsection{Efficiency promotion}
 \begin{enumerate}
-    \item \textbf{Localized detection:} We know that the face can not move very fast in the picture, so we can just detect a small area around the position of faces in the last frame. We detect on the global scale only if there is no face in the last frame. You may wonder what if the scope changed suddenly, it doesn't matter. In the first frame after changing the scope, we cannot detect the face, but after that, we will find that there is no face in the last frame, and then detection on a global scale will be done. So, indeed, we may lose at most one frame, which cannot be observed.
-    \item \textbf{Reduced resolution scanning:} some computation can be saved when scanning the whole picture. We can just reduce the resolution of the picture by several times, as we just need to find the position of the faces, very high resolution is not necessary. For example, we find that 480P is good enough than 1080P. The model can still find the face in 480P, and the time consumption is much less than that in 1080P.
+    \item \textbf{Localized detection:} Since faces don't move much between frames, we track them by searching a small area around their last known spot. Only if a face goes missing do we scan the whole image again. Even if the scene suddenly shifts, we might miss just a single frame, no one would even notice.
+    \item \textbf{Reduced resolution scanning:} To save computation during full-frame scanning, we lower the image resolution, as high detail isn't needed just to locate faces. For instance, using 480P instead of 1080P still allows accurate face detection while significantly reducing processing time.
     \item \textbf{Dynamic resolution adjustment:} when the face is very large, we can also reduce the resolution, as it is just about finding the face.
 \end{enumerate}
 \subsection{CNN recognition}
-We observed that the data distribution was highly unbalanced, with the disgust class being significantly underrepresented while the happy class was overrepresented. To address this issue, we applied data augmentation techniques to balance the class distribution. This preprocessing step improved our classification results, particularly for the rare emotion categories that would otherwise have been difficult to recognize accurately.
+We observed that the data distribution was highly unbalanced. To address the imbalance in the dataset, especially the unde-rrepresentation of the disgust class, data augmentation was applied, leading to improved classification performance for rare emotions.
 
-We employed a ResNet architecture for emotion classification. Notably, facial expression classification is challenging even for humans. To establish a benchmark, we conducted experiments with human participants (our classmates). Initially, they achieved approximately 40\% accuracy, and even after extensive exposure to the dataset, their performance plateaued at around 65\%. Our model achieved an average test accuracy of 62\% (Figure \ref{fig:test_acc}), which is comparable to human performance on this challenging task.
+We employed a ResNet architecture for emotion classification. Facial expression classification is challenging even for humans. To establish a benchmark, we conducted experiments with our classmates. Initially, they achieved approximately 40\% accuracy, and even after extensive exposure to the dataset, their performance plateaued at around 60\%. Our model achieved an average test accuracy of 62\% (Figure \ref{fig:test_acc}), which is comparable to human performance.
 
 \begin{figure}[!htb]
 	\centering
-	 \includegraphics[width=1.0\linewidth]{sec/assets/test_acc.png}
+	 \includegraphics[width=0.6\linewidth]{sec/assets/test_acc.png}
 	 \caption{The model achieved 62\% accuracy on the test set, comparable to trained human performance.}
 	 \label{fig:test_acc}
 \end{figure}

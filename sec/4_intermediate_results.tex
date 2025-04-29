@@ -6,7 +6,7 @@ We used a standard video of 2 minutes and 18 seconds at 30fps for testing. The v
 First, we tested a nearly 1080P video without optimization. The naive pipeline, which detected faces and classified emotions in each frame, took 7m26s to complete (Figure \ref{fig:original_command}), which was prohibitively long for practical use.
 \begin{figure}[!htb]
 	\centering
-	 \includegraphics[width=1.0\linewidth]{sec/assets/original_command.png}
+	 \includegraphics[width=0.8\linewidth]{sec/assets/original_command.png}
 	 \caption{Original run with the naive pipeline: processing time was 7m26s.}
 	 \label{fig:original_command}
 \end{figure}
@@ -14,7 +14,7 @@ First, we tested a nearly 1080P video without optimization. The naive pipeline, 
 We tested multiple video resolutions to optimize processing speed. Our experiments showed that while high-resolution videos are not essential for effective face and emotion detection, excessively low resolution leads to detection failures. Testing demonstrated that 480P provided the optimal balance between accuracy and performance, reducing processing time to just 1m38s (Figure \ref{fig:480P_command}). Based on these findings, we implemented automatic resolution adjustment to approximately 480P for all subsequent experiments.
 \begin{figure}[!htb]
 	\centering
-	 \includegraphics[width=1.0\linewidth]{sec/assets/480P_command.png}
+	 \includegraphics[width=0.8\linewidth]{sec/assets/480P_command.png}
 	 \caption{The 480P video required only 1m38s to process.}
 	 \label{fig:480P_command}
 \end{figure}
@@ -28,7 +28,7 @@ We also implemented dynamic resolution adjustment based on face size. When the f
 \begin{tikzpicture}
 \begin{axis}[
 	width=7cm,
-	height=4cm,
+	height=3cm,
 	xlabel={p},
 	ylabel={},
 	xmin=0, xmax=3.5,
@@ -56,7 +56,7 @@ We also implemented dynamic resolution adjustment based on face size. When the f
 
 \begin{figure}[!htb]
 	\centering
-	 \includegraphics[width=1.0\linewidth]{sec/assets/auto_face_command.png}
+	 \includegraphics[width=0.8\linewidth]{sec/assets/auto_face_command.png}
 	 \caption{Automatic face resolution adjustment reduced processing time to 1m10s.}
 	 \label{auto_face_command}
 \end{figure}
@@ -69,7 +69,7 @@ Figure \ref{fig:jg_exp} demonstrates our emotion detection system in action. The
 
 \begin{figure}[!htb]
 	\centering
-	 \includegraphics[width=0.8\linewidth]{sec/assets/jg_exp.png}
+	 \includegraphics[width=0.6\linewidth]{sec/assets/jg_exp.png}
 	 \caption{Example of emotion detection. The model successfully recognizes two faces and correctly identifies both emotions as "happy."}
 	 \label{fig:jg_exp}
 \end{figure}
