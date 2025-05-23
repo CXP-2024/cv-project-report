@@ -1,0 +1,12 @@
+\section{Future Improvements}
+\subsection{Distorted face detection}
+Faces' in different pose caused problems for detection. To improve face detection when faces are distorted by different poses, keypoints like the eyes and lips can be identified using SIFT or existing facial landmark models which find 68 important points on the face. These keypoints enable a homography transformation to realign faces to their correct position for better detection.
+
+\subsection{Complex Situations}
+In complex situations, such as crowded environments or varying lighting conditions, the model's performance degrades. We plan to conduct  testing in these challenging scenarios and explore techniques to enhance the model's robustness. This may involve data augmentation strategies, such as introducing noise or simulating various lighting conditions in the training data.
+
+\subsection{New Datasets and Models}
+We may use new datasets to train our model. Some of these datasets contain combined emotions, which is more detailed. We also plan to explore better detection models (e.g., YOLO) to improve both accuracy and efficiency.
+
+\subsection{Real-time Detection on Edge Devices}
+We aim to deploy our model on local edge devices, such as cellphones or Raspberry Pi. This implementation would enable real-time emotion detection using only the device's built-in camera. This represents a practical and valuable application of our research with promising potentials
